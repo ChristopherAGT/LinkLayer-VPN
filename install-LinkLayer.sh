@@ -12,7 +12,7 @@ USERNAME="admin"
 PASSWORD="123456"
 BACKEND_PORT="8000"
 FRONTEND_PORT="3000"
-DOMAIN="20.206.200.72"  # Cambia esto si usarás dominio + nginx
+DOMAIN="br1.draplus.store"  # Cambia esto si usarás dominio + nginx
 
 # Colores
 GREEN='\e[32m'
@@ -42,7 +42,7 @@ source dashweb/bin/activate
 pip install -r requeriments.txt
 
 echo -e "${CYAN}🚀 Iniciando Backend con PM2...${NEUTRO}"
-pm2 start install.py --interpreter python3 --name linklayer-backend -- \
+pm2 start dashweb/bin/python3 --name linklayer-backend -- install.py \
   --port "$BACKEND_PORT" \
   --host 0.0.0.0 \
   --username "$USERNAME" \
