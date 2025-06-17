@@ -42,7 +42,7 @@ source dashweb/bin/activate
 pip install -r requeriments.txt
 
 echo -e "${CYAN}🚀 Iniciando Backend con PM2...${NEUTRO}"
-pm2 start python3 --name linklayer-backend -- install.py -- \
+pm2 start python3 --name linklayer-backend -- install.py \
   --port "$BACKEND_PORT" \
   --host 0.0.0.0 \
   --username "$USERNAME" \
