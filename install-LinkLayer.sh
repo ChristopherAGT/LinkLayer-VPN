@@ -42,7 +42,7 @@ source dashweb/bin/activate
 pip install -r requeriments.txt
 
 echo -e "${CYAN}🚀 Iniciando Backend con PM2...${NEUTRO}"
-pm2 start python3 --name linklayer-backend -- install.py \
+pm2 start install.py --interpreter python3 --name linklayer-backend -- \
   --port "$BACKEND_PORT" \
   --host 0.0.0.0 \
   --username "$USERNAME" \
@@ -90,8 +90,9 @@ nginx -t && systemctl reload nginx
 # │                        PM2 PERSISTENCIA                      │
 # ╰──────────────────────────────────────────────────────────────╯
 
+echo -e "${CYAN}💾 Guardando procesos y configurando persistencia...${NEUTRO}"
 pm2 save
-pm2 startup | bash
+eval "$(pm2 startup | grep sudo)"
 
 # ╭──────────────────────────────────────────────────────────────╮
 # │                         FINALIZADO                           │
