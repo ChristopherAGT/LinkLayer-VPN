@@ -12,7 +12,7 @@ USERNAME="admin"
 PASSWORD="123456"
 BACKEND_PORT="8000"
 FRONTEND_PORT="3000"
-DOMAIN="br1.draplus.store"  # Cambia esto si usarás dominio + nginx
+DOMAIN="20.206.200.72"  # Cambia esto si usarás dominio + nginx
 
 # Colores
 GREEN='\e[32m'
