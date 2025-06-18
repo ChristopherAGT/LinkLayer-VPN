@@ -39,7 +39,9 @@ cd linklayer-backend-dashboard
 
 python3 -m venv dashweb
 source dashweb/bin/activate
-pip install -r requeriments.txt
+
+# 🛠️ Corrección en el nombre del archivo de requerimientos
+pip install -r requirements.txt
 
 echo -e "${CYAN}🚀 Iniciando Backend con PM2...${NEUTRO}"
 pm2 start dashweb/bin/python3 --name linklayer-backend -- install.py \
@@ -74,11 +76,19 @@ server {
     location /api/ {
         proxy_pass http://localhost:$BACKEND_PORT/;
         proxy_set_header Host \$host;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_cache_bypass \$http_upgrade;
     }
 
     location / {
         proxy_pass http://localhost:$FRONTEND_PORT;
         proxy_set_header Host \$host;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_cache_bypass \$http_upgrade;
     }
 }
 EOF
@@ -92,7 +102,7 @@ nginx -t && systemctl reload nginx
 
 echo -e "${CYAN}💾 Guardando procesos y configurando persistencia...${NEUTRO}"
 pm2 save
-eval "$(pm2 startup | grep sudo)"
+pm2 startup | grep sudo | bash
 
 # ╭──────────────────────────────────────────────────────────────╮
 # │                         FINALIZADO                           │
