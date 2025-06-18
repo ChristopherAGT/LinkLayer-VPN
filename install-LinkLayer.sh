@@ -12,7 +12,7 @@ USERNAME="admin"
 PASSWORD="123456"
 BACKEND_PORT="8000"
 FRONTEND_PORT="3000"
-DOMAIN="158.23.56.241"  # Cambia esto si usarás dominio + nginx
+DOMAIN="158.23.160.114"  # Cambia esto si usarás dominio + nginx
 
 # Colores
 GREEN='\e[32m'
@@ -24,10 +24,12 @@ echo -e "${CYAN}🔧 Instalando dependencias básicas...${NEUTRO}"
 apt update && apt install -y python3 python3-venv python3-pip git curl nginx
 
 # ╭──────────────────────────────────────────────────────────────╮
-# │          ELIMINAR VERSIONES ANTIGUAS DE NODE.JS              │
+# │           LIMPIEZA COMPLETA DE NODE.JS ANTIGUO               │
 # ╰──────────────────────────────────────────────────────────────╯
-echo -e "${CYAN}🧹 Eliminando Node.js anterior si existe...${NEUTRO}"
-apt remove -y nodejs libnode-dev || true
+echo -e "${CYAN}🧹 Eliminando Node.js antiguo y conflictos...${NEUTRO}"
+apt purge -y nodejs libnode-dev libnode72 || true
+apt autoremove -y
+rm -rf /usr/include/node
 
 # ╭──────────────────────────────────────────────────────────────╮
 # │                 INSTALAR NODE.JS Y YARN                      │
