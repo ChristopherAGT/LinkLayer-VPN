@@ -43,6 +43,9 @@ npm install -g yarn pm2
 # │                     INSTALAR BACKEND                         │
 # ╰──────────────────────────────────────────────────────────────╯
 echo -e "${CYAN}📦 Instalando Backend...${NEUTRO}"
+echo -e "${YELLOW}⚠️ Eliminando instalación anterior de Backend...${NEUTRO}"
+rm -rf "$INSTALL_PATH/linklayer-backend-dashboard"
+
 cd "$INSTALL_PATH"
 git clone https://github.com/NewToolsWorks/linklayer-backend-dashboard.git
 cd linklayer-backend-dashboard
@@ -62,6 +65,9 @@ pm2 start dashweb/bin/python3 --name linklayer-backend -- install.py \
 # │                     INSTALAR FRONTEND                        │
 # ╰──────────────────────────────────────────────────────────────╯
 echo -e "${CYAN}📦 Instalando Frontend...${NEUTRO}"
+echo -e "${YELLOW}⚠️ Eliminando instalación anterior de Frontend...${NEUTRO}"
+rm -rf "$INSTALL_PATH/linklayer-frontend-dashboard"
+
 cd "$INSTALL_PATH"
 git clone https://github.com/NewToolsWorks/linklayer-frontend-dashboard.git
 cd linklayer-frontend-dashboard
