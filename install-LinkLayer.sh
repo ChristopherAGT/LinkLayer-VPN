@@ -41,7 +41,7 @@ python3 -m venv dashweb
 source dashweb/bin/activate
 
 # 🛠️ Corrección en el nombre del archivo de requerimientos
-pip install -r requirements.txt
+pip install -r requeriments.txt
 
 echo -e "${CYAN}🚀 Iniciando Backend con PM2...${NEUTRO}"
 pm2 start dashweb/bin/python3 --name linklayer-backend -- install.py \
